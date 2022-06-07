@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CarServiceImp {
+public class CarServiceImp implements CarService{
     private static List<Car> carList = getNewCarList();
 
     public static List<Car> getCarList(int count) {
