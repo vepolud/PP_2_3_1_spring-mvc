@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -13,13 +14,44 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-    private SessionFactory sessionFactory;
+//    private SessionFactory sessionFactory;
     @PersistenceContext
     EntityManager entityManager;
 
-    @Autowired
-    UserDaoImp(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+//    @Autowired
+//    UserDaoImp(EntityManager entityManager) {
+//        this.entityManager = entityManager;
+//    }
+
+    @Override
+    public void addUser(User user) {
+        entityManager.persist(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = entityManager.find(User.class, id);
+        if (user == null) {
+            throw new EntityNotFoundException("Can't find User for ID "
+                    + id);
+        }
+        return user;
+    }
+
+    @Override
+    public void removeUser(int id) {
+        entityManager.remove(getUserById(id));
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> listUsers() {
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
 //    @Override

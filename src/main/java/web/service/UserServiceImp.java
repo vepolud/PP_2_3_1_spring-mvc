@@ -12,7 +12,41 @@ import java.util.List;
 public class UserServiceImp implements web.service.UserService {
 
 
-    private UserDao userDao;
+    private final UserDao userDao;
+
+    @Autowired
+    public UserServiceImp(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    @Transactional
+    public void addUser(User user) {
+        userDao.addUser(user);
+    }
+
+    @Transactional
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
+
+    @Transactional
+    @Override
+    public void removeUser(int id) {
+        userDao.removeUser(id);
+    }
+
+    @Override
+    @Transactional
+    public List<User> listUsers() {
+        return userDao.listUsers();
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
+    }
 
 //    @Autowired
 //    public UserServiceImp(UserDao userDao) {
