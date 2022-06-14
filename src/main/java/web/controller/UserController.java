@@ -41,7 +41,13 @@ public class UserController {
         return "user";
     }
 
-    @RequestMapping("/remove/{id}")
+    @PostMapping("/users/update")
+    public String updateUser(@ModelAttribute ("user") User user){
+        userService.updateUser(user);
+        return "user";
+    }
+
+    @RequestMapping("/users/remove/{id}")
     public String removeUser(@PathVariable("id") int id){
         userService.removeUser(id);
         return "redirect:/users";

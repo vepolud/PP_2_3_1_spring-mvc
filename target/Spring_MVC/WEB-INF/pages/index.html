@@ -6,10 +6,8 @@
     <title>Users list</title>
 </head>
 <body>
-<div>
-    <th:block th:each="user : ${usersList}">
-        <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a>
-    </th:block>
+<div th:each="user : ${usersList}">
+        <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">user</a>
 </div>
 <div>
     <form th:method="POST" th:action="@{/user}" th:object="${user}">
