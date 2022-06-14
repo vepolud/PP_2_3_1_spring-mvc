@@ -23,7 +23,7 @@ public class UserDaoImp implements UserDao {
         User updatableUser = getUserById(user.getId());
         updatableUser.setName(user.getName());
         updatableUser.setEmail((user.getEmail()));
-        entityManager.merge(updatableUser);
+        entityManager.merge(user);
     }
 
     @Override
