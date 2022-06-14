@@ -1,27 +1,17 @@
 package web.dao;
 
-import web.model.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
 
-//    private SessionFactory sessionFactory;
     @PersistenceContext
     EntityManager entityManager;
-
-//    @Autowired
-//    UserDaoImp(EntityManager entityManager) {
-//        this.entityManager = entityManager;
-//    }
 
     @Override
     public void addUser(User user) {
@@ -47,37 +37,10 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) {
-        entityManager.remove(getUserById(id));
-    }
+    public void removeUser(int id) { entityManager.remove(getUserById(id)); }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> listUsers() {
         return entityManager.createQuery("from User", User.class).getResultList();
     }
-
-//    @Override
-//    public void add(User user) {
-//        entityManager.persist(user);
-//    }
-//
-//    @Override
-//    public User getUser(String model, int series) {
-//        String HQL = "from Car car LEFT OUTER JOIN FETCH car.user WHERE car.model =:CarModel AND car.series =:CarSeries";
-//        Car car = entityManager.createQuery(HQL, Car.class).setParameter("CarModel", model).setParameter("CarSeries", series).getSingleResult();
-//        return car.getUser();
-//    }
-//
-//    @Override
-//    public void addCar(Car car) {
-//        entityManager.persist(car);
-//    }
-//
-//    @Override
-//    @SuppressWarnings("unchecked")
-//    public List<User> listUsers() {
-//        TypedQuery<User> query = entityManager.createQuery("from User", User.class);
-//        return query.getResultList();
-//    }
 }

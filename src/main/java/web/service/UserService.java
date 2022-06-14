@@ -13,6 +13,4 @@ public interface UserService {
     List<User> listUsers();
 
     User getUserById(int id);
-//    void addCar(Car car);
-//    User getUser(String model, int series);
 }

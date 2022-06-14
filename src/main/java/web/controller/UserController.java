@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
-import web.service.UserServiceImp;
 
 import java.util.List;
 
@@ -52,11 +51,4 @@ public class UserController {
         userService.removeUser(id);
         return "redirect:/users";
     }
-
-//    @GetMapping(value = "/users")
-//    public String printWelcome(@RequestParam(value = "count", required = false, defaultValue = "5") int count, ModelMap model) {
-//        List<User> userList = userService.listUsers();
-//        model.addAttribute("messages", userList);
-//        return "index";
-//    }
 }
