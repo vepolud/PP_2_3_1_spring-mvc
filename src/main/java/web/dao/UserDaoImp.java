@@ -11,7 +11,7 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public void addUser(User user) {
@@ -20,9 +20,6 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        User updatableUser = getUserById(user.getId());
-        updatableUser.setName(user.getName());
-        updatableUser.setEmail((user.getEmail()));
         entityManager.merge(user);
     }
 
