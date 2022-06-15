@@ -38,7 +38,6 @@ public class UserServiceImp implements web.service.UserService {
     }
 
     @Override
-    @Transactional
     public List<User> listUsers() {
         return userDao.listUsers();
     }
@@ -47,33 +46,4 @@ public class UserServiceImp implements web.service.UserService {
     public User getUserById(int id) {
         return userDao.getUserById(id);
     }
-
-//    @Autowired
-//    public UserServiceImp(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-//
-//    @Transactional
-//    @Override
-//    public void add(User user) {
-//        userDao.add(user);
-//    }
-//
-//
-//    @Override
-//    public List<User> listUsers() {
-//        return userDao.listUsers();
-//    }
-//
-//    @Transactional
-//    @Override
-//    public void addCar(Car car) {
-//        userDao.addCar(car);
-//    }
-//
-//
-//    @Override
-//    public User getUser(String model, int series) {
-//        return userDao.getUser(model, series);
-//    }
 }

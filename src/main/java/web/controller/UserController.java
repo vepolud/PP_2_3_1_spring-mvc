@@ -23,13 +23,17 @@ public class UserController {
     @GetMapping(value = "/users")
     public String listUsers(ModelMap model) {
         List<User> userList = userService.listUsers();
+        for (User usr : userList){
+            System.out.println(usr.getName());
+        }
         model.addAttribute("usersList", userList);
         model.addAttribute("user", new User());
         return "index";
     }
 
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/user"/*, produces = "text/plain;charset=UTF-8"*/)
     public String addUser(@ModelAttribute ("user") User user){
+        System.out.println("добавлен: " + user.getName());
         userService.addUser(user);
         return "redirect:/users";
     }
