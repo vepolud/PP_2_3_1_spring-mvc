@@ -55,4 +55,25 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User user = (User) obj;
+
+        return Integer.compare(getId(), user.getId()) == 0 && getName().equals(((User) obj).getName()) && getEmail().equals(((User) obj).getEmail());
+
+    }
 }
