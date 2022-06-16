@@ -24,7 +24,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         User user = entityManager.find(User.class, id);
         if (user == null) {
             throw new EntityNotFoundException("Can't find User for ID "
@@ -34,7 +34,9 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) { entityManager.remove(getUserById(id)); }
+    public void removeUser(long id) {
+        entityManager.remove(getUserById(id));
+    }
 
     @Override
     public List<User> listUsers() {

@@ -33,7 +33,7 @@ public class UserServiceImp implements web.service.UserService {
 
     @Transactional
     @Override
-    public void removeUser(int id) {
+    public void removeUser(long id) {
         userDao.removeUser(id);
     }
 
@@ -43,7 +43,7 @@ public class UserServiceImp implements web.service.UserService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return userDao.getUserById(id);
     }
 }

@@ -8,7 +8,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -16,18 +16,19 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -73,7 +74,7 @@ public class User {
 
         User user = (User) obj;
 
-        return Integer.compare(getId(), user.getId()) == 0 && getName().equals(((User) obj).getName()) && getEmail().equals(((User) obj).getEmail());
+        return getId() == user.getId() && getName().equals(((User) obj).getName()) && getEmail().equals(((User) obj).getEmail());
 
     }
 }
